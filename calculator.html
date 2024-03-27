@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tip Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+    .calculator {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+    }
+    input[type="number"], select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+<div class="calculator">
+    <h2>Tip Calculator</h2>
+    <label for="bill">Total Bill Amount:</label>
+    <input type="number" id="bill" placeholder="Enter total bill amount">
+
+    <label for="service-quality">Level of Satisfaction:</label>
+    <select id="service-quality">
+        <option value="1">1 - Very Unsatisfied</option>
+        <option value="2">2 - Unsatisfied</option>
+        <option value="3">3 - Neutral</option>
+        <option value="4">4 - Satisfied</option>
+        <option value="5">5 - Very Satisfied</option>
+    </select>
+
+    <label for="num-people">Number of People:</label>
+    <input type="number" id="num-people" placeholder="Enter number of people">
+
+    <button onclick="calculateTip()">Calculate Tip</button>
+
+    <div id="tip-result"></div>
+</div>
+
+<script>
+    function calculateTip() {
+        var billAmount = parseFloat(document.getElementById('bill').value);
+        var satisfactionLevel = parseInt(document.getElementById('service-quality').value);
+        var numPeople = parseInt(document.getElementById('num-people').value);
+
+        var tipPerPerson = (billAmount * (satisfactionLevel / 100)) / numPeople;
+
+        document.getElementById('tip-result').innerHTML = "Tip per person: $" + tipPerPerson.toFixed(2);
+    }
+</script>
+</body>
+</html>
